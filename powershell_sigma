@@ -1,0 +1,28 @@
+title: Suspicious PowerShell Activity
+description: Detects potentially malicious PowerShell usage based on suspicious command-line patterns
+logsource:
+  category: process_creation
+
+detection:
+  selection_encoded:
+    CommandLine: "-enc"
+
+  selection_download:
+    CommandLine: "Invoke-WebRequest"
+
+  selection_execution:
+    CommandLine: "IEX"
+
+  selection_bypass:
+    CommandLine: "ExecutionPolicy Bypass"
+
+  selection_noprofile:
+    CommandLine: "-NoProfile"
+
+  condition: 2 of selection_*
+
+level: medium
+
+falsepositives:
+  - Administrative scripts using PowerShell
+  - Automation tools performing legitimate downloads
